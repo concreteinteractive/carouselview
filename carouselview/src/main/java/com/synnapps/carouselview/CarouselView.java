@@ -511,6 +511,6 @@ public class CarouselView extends FrameLayout {
     public void setStrokeWidth(float strokeWidth) {
         mIndicator.setStrokeWidth(strokeWidth);
         int padding = (int) strokeWidth;
-        mIndicator.setPadding(-20, padding, -20, padding);
+        mIndicator.setPadding(padding, padding, padding, padding);
     }
 }

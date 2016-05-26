@@ -59,6 +59,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
     private boolean mCentered;
     private boolean mSnap;
 
+    private int mSpaceBetweenItems = 10;
     private int mTouchSlop;
     private float mLastMotionX = -1;
     private int mActivePointerId = INVALID_POINTER;
@@ -195,6 +196,8 @@ public class CirclePageIndicator extends View implements PageIndicator {
         return mSnap;
     }
 
+
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -218,14 +221,14 @@ public class CirclePageIndicator extends View implements PageIndicator {
         int shortPaddingBefore;
         if (mOrientation == HORIZONTAL) {
             longSize = getWidth();
-            longPaddingBefore = getPaddingLeft();
-            longPaddingAfter = getPaddingRight();
-            shortPaddingBefore = getPaddingTop();
+            longPaddingBefore = mSpaceBetweenItems;
+            longPaddingAfter = mSpaceBetweenItems;
+            shortPaddingBefore = mSpaceBetweenItems;
         } else {
             longSize = getHeight();
-            longPaddingBefore = getPaddingTop();
-            longPaddingAfter = getPaddingBottom();
-            shortPaddingBefore = getPaddingLeft();
+            longPaddingBefore = mSpaceBetweenItems;
+            longPaddingAfter = mSpaceBetweenItems;
+            shortPaddingBefore = mSpaceBetweenItems;
         }
 
         final float threeRadius = mRadius * 3;
@@ -469,7 +472,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
         } else {
             //Calculate the width according the views count
             final int count = mViewPager.getAdapter().getCount();
-            result = (int)(getPaddingLeft() + getPaddingRight()
+            result = (int)(mSpaceBetweenItems + mSpaceBetweenItems
                     + (count * 2 * mRadius) + (count - 1) * mRadius + 1);
             //Respect AT_MOST value if that was what is called for by measureSpec
             if (specMode == MeasureSpec.AT_MOST) {
@@ -496,7 +499,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
             result = specSize;
         } else {
             //Measure the height
-            result = (int)(2 * mRadius + getPaddingTop() + getPaddingBottom() + 1);
+            result = (int)(2 * mRadius + mSpaceBetweenItems + mSpaceBetweenItems + 1);
             //Respect AT_MOST value if that was what is called for by measureSpec
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
